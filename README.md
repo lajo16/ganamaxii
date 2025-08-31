@@ -1,23 +1,39 @@
-# GanaMaxii — Portal Inmobiliario en PHP
+# GanaMaxii — Portal Inmobiliario (PHP + MySQL + Bootstrap)
 
-Portal inmobiliario estilo Urbania: **compra, alquiler y subastas**, filtros (Dpto/Prov/Dist, tipo, moneda, precio), **Admin CRUD**, galería y WhatsApp.
+**Características:**
+- Home + Comprar (Directa, Subasta) + Alquilar + Contacto + Admin
+- Filtros: Departamento → Provincia → Distrito (cascada vía AJAX), Tipo de inmueble, Moneda (USD/PEN)
+- CRUD de propiedades (crear/editar/eliminar) con subida de **hasta 5 imágenes** por propiedad
+- Login de administrador con contraseña **hasheada** (usuario inicial `admin`, clave `Gana2025!` — se crea automáticamente si no existen usuarios)
+- Galería con **Bootstrap Carousel** y miniaturas
+- Bootstrap 5 + Bootstrap Icons + diseño responsive
 
-### Demo
-- Producción: https://ganamaxii.pe (o tu entorno de pruebas)
-- Landing: GitHub Pages (abajo)
+## Requisitos
+- PHP 7.4+
+- MySQL 5.7+/MariaDB (phpMyAdmin para importar el SQL)
+- Servidor local (XAMPP, WAMP, MAMP) o hosting con PHP + MySQL
 
-### Tecnologías
-PHP 8+, MySQL, Bootstrap 5, JavaScript, CSS, cPanel.
+## Instalación
+1. Crea una BD `ganamaxii` e importa `sql/ganamaxii.sql` en phpMyAdmin.
+2. Configura tus credenciales en `includes/db.php`.
+3. Copia todo el proyecto a tu servidor (`htdocs/ganamaxii` en XAMPP, por ejemplo).
+4. Abre `http://localhost/ganamaxii/`.
+5. Panel admin: `http://localhost/ganamaxii/admin/login.php`  
+   Usuario: **admin** · Clave: **Gana2025!** (cámbiala luego).
 
-### Instalación rápida (local)
-1) Crea DB `ganamaxii` e importa `sql/ganamaxii.example.sql`.  
-2) Copia `includes/config.sample.php` a `includes/config.php` y pon tus credenciales.  
-3) Abre `http://localhost/ganamaxii`.
+## Estructura
+- `index.php` · Home con filtros y destacados
+- `comprar.php`, `subasta.php`, `alquilar.php` · Listados por operación
+- `contacto.php` · Formulario + Google Maps
+- `admin/` · Login + Dashboard + CRUD
+- `api/` · Endpoints AJAX para provincias/distritos
+- `includes/` · Conexión DB, header/footer, filtros, utilidades
+- `assets/` · CSS, JS, imágenes
 
-### Estructura
-/admin, /api, /assets, /includes, /sql, index.php
+## Notas
+- Las listas de provincias/distritos se construyen **dinámicamente** en función de lo que exista en la tabla `propiedades`, para que los filtros siempre estén sincronizados.
+- El límite de 5 imágenes se valida al agregar/editar.
+- Las imágenes se guardan en `assets/img/properties/p<ID>/` y se registran en la tabla `imagenes_propiedades`.
 
-### Roadmap
-Favoritos, sitemap/SEO, subastas avanzadas, tests/CI.
-
-Autor: Alonso Julca · LinkedIn
+Autor: Luis A. Julca O. 
+LinkIn: https://www.linkedin.com/in/l-alonso-julca-o/
