@@ -1,0 +1,25 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# PHP
+/vendor/
+/composer.lock
+
+# Node/Build
+/node_modules/
+/dist/
+/build/
+
+# Entorno/Claves
+.env
+.env.local
+includes/config.php
+
+# Archivos de base de datos sensibles
+*.sql
+!sql/ganamaxii.example.sql   # permite subir SOLO el ejemplo limpio
+
+# IDE
+.vscode/
+.idea/
