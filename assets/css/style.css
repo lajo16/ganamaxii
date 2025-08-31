@@ -1,0 +1,356 @@
+:root {
+  --primary:#0ea5e9; /* tailwind sky-500-ish */
+  --primary-600:#0284c7;
+  --bg:#ffffff;
+  --muted:#f1f5f9;
+  --text:#0f172a;
+}
+
+/* ----- BASE ----- */
+html,body{height:100%;}
+body{
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  color:var(--text);
+  background:var(--bg);
+}
+.navbar-brand{font-weight:700; letter-spacing:.5px;}
+
+/* ----- HERO ----- */
+.hero {
+  background: linear-gradient(180deg, rgba(2,132,199,.12), rgba(14,165,233,.02)),
+              url('assets/img/hero.jpg') center/cover no-repeat;
+  border-bottom: 1px solid #e2e8f0;
+}
+.hero .overlay {
+  backdrop-filter: blur(0px);
+  background: rgba(255,255,255,.65);
+}
+
+/* ----- CARDS / COMPONENTES ----- */
+.filter-card {
+  background: var(--muted);
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+.card-property {
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  overflow:hidden;
+}
+.badge-op{ background: var(--primary); }
+
+/* Botones */
+.btn-success {
+  background: #22c55e;   /* verde brillante */
+  border-color: #16a34a; /* verde más oscuro */
+}
+.btn-success:hover {
+  filter: brightness(0.95);
+}
+
+
+
+/* Botón "Ver detalle" */
+.card-property .btn-detalle {
+  transition: all .2s ease-in-out;
+}
+.card-property .btn-detalle:hover,
+.card-property .btn-detalle:focus {
+  background-color: var(--primary, #0ea5e9);
+  color: #fff;
+  border-color: var(--primary, #0ea5e9);
+  box-shadow: 0 0 0 0.25rem rgba(14,165,233,.35);
+  text-decoration: none;
+}
+.card-property .btn-detalle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.3rem rgba(14,165,233,.45);
+}
+
+/* ----- SEGMENTED (Operación) ----- */
+.segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 4px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow:
+    0 10px 20px rgba(2, 132, 199, .06),
+    0 2px 6px rgba(15, 23, 42, .06);
+  border: 1px solid #e2e8f0;
+}
+.segmented input { display: none; }
+.segmented label {
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  color: #475569;
+  transition: all .18s ease;
+}
+.segmented input:checked + label {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(2, 132, 199, .25);
+}
+.segmented label:hover { background: #f1f5f9; }
+
+/* ----- NAVBAR ----- */
+@media (min-width: 992px) {
+  .navbar .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+  .navbar .dropdown-toggle::after {
+    transition: transform 0.2s ease;
+  }
+  .navbar .dropdown:hover .dropdown-toggle::after {
+    transform: rotate(180deg);
+  }
+}
+.navbar-nav .nav-link {
+  transition: color 0.2s, background-color 0.2s;
+  border-radius: 6px;
+}
+.navbar-nav .nav-link:hover {
+  color: #0d6efd;
+  background-color: #f1f5ff;
+}
+
+/* ----- WHATSAPP FAB ----- */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  background: #25d366;
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);  /* sombra base */
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+  z-index: 1000;
+}
+.whatsapp-fab:hover {
+  transform: scale(1.05);
+  background: #20b954;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.35); /* sombra más fuerte */
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ----- FOOTER ----- */
+footer {
+  border-top:1px solid #e2e8f0;
+  background:#fff;
+}
+.thumbnail-strip img {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 8px;
+  border:1px solid #e5e7eb;
+  margin-right:6px;
+  cursor:pointer;
+}
+
+/* ----- ANIMACIÓN LATIDO PARA WHATSAPP ----- */
+@keyframes pulse {
+  0%   { transform: scale(1); box-shadow: 0 4px 8px rgba(0,0,0,0.25); }
+  30%  { transform: scale(1.15); box-shadow: 0 8px 20px rgba(0,0,0,0.35); }
+  50%  { transform: scale(1.05); box-shadow: 0 6px 14px rgba(0,0,0,0.3); }
+  100% { transform: scale(1); box-shadow: 0 4px 8px rgba(0,0,0,0.25); }
+}
+
+.whatsapp-fab {
+  animation: pulse 1.8s ease-in-out infinite;
+  animation-delay: 5s; /* espera 5s antes del primer pulso */
+}
+
+/* Pausar animación si el usuario pasa el mouse encima */
+.whatsapp-fab:hover {
+  animation: none;
+  transform: scale(1.05);
+  background: #20b954;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.35);
+}
+
+/* Botón principal celeste */
+/* Botón principal GanaMaxii (verde corporativo) */
+.btn-op {
+  background: #007A33; /* Verde logo */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: .55rem 1rem;
+  font-weight: 600;
+}
+.btn-op:hover { 
+  background: #006629; /* Verde más oscuro al hover */
+  color: #fff; 
+}
+
+/* Dropdown */
+#op-dropdown .dropdown-menu {
+  border: 1px solid #b3d6c1; /* verde muy claro en borde */
+  border-radius: 8px;
+  overflow: hidden;
+}
+#op-dropdown .dropdown-item {
+  font-family: 'Poppins', sans-serif;
+  font-size: .95rem;
+  padding: .55rem .9rem;
+}
+#op-dropdown .dropdown-item:hover {
+  background: #e6f4ec; /* fondo verdoso claro */
+  color: #007A33;
+}
+#op-dropdown .dropdown-item.active {
+  background: #007A33;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+/* borde clarito verdoso para cajas con .border */
+.border { border-color: #e5f2ea !important; }
+
+
+/* Botón verde corporativo solo para WhatsApp */
+.btn-ganamaxii {
+  background:#007A33;
+  border-color:#006629;
+  color:#fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-ganamaxii:hover {
+  background:#006629;
+  border-color:#004d26;
+  color:#fff;
+  box-shadow: 0 0.4rem 0.6rem rgba(0,0,0,.25); /* sombra más notoria */
+  transform: translateY(-2px); /* levitación suave */
+}
+
+/* ==== Propiedades relacionadas compactas ==== */
+.related-grid .card { border-radius: .75rem; }
+.related-grid .card-body { padding: .65rem .75rem; }
+.related-grid .meta    { font-size: .8rem; color: #6c757d; }
+.related-grid .title   {
+  font-size: .9rem; font-weight: 600; margin: .25rem 0 .35rem;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; min-height: calc(1.2em * 2);
+}
+.related-grid .price   { font-size: .9rem; font-weight: 700; color: #0d6efd; }
+
+/* Imagen proporcional y baja 
+.related-grid .related-img {
+  width: 100%;
+  height: 120px;        /* más chico; puedes bajar a 100px si quieres
+  object-fit: cover;
+  border-top-left-radius: .75rem;
+  border-top-right-radius: .75rem;
+}*/
+
+/* En pantallas medianas sube un poquito la altura pero sigue compacta 
+@media (min-width: 768px) {
+  .related-grid .related-img { height: 140px; }
+}*/
+
+/* Bloque de ventajas */
+.adv-card { transition: transform .2s ease, box-shadow .2s ease; }
+.adv-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,.08);
+}
+/* Botón verde corporativo */
+.btn-ganamaxii {
+  background:#007A33; 
+  border-color:#006629; 
+  color:#fff;
+  transition:all .2s ease-in-out;
+}
+.btn-ganamaxii:hover {
+  background:#009e40;
+  border-color:#007a33;
+  color:#fff;
+  box-shadow:0 6px 16px rgba(0,122,51,.25);
+}
+
+/* Botón verde corporativo */
+.btn-ganamaxii {
+  background:#007A33; 
+  border-color:#006629; 
+  color:#fff;
+  transition:all .2s ease-in-out;
+}
+.btn-ganamaxii:hover {
+  background:#009e40;
+  border-color:#007a33;
+  color:#fff;
+  box-shadow:0 6px 16px rgba(0,122,51,.25);
+}
+
+/* Imágenes uniformes en cards */
+.card-cover {
+  aspect-ratio: 4 / 3;   /* 4:3 consistente */
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  background:#f2f2f2;
+}
+
+/* Carrusel de cards: forzamos que las imgs internas respeten 4:3 */
+.card .carousel-item img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Relacionadas compactas */
+.related-grid .related-img {
+  width: 100%;
+  height: 130px;         /* compacto */
+  object-fit: cover;
+  border-top-left-radius: .75rem;
+  border-top-right-radius: .75rem;
+}
+@media (min-width:768px){ .related-grid .related-img { height: 140px; } }
+
+
+/* Hover efecto en imágenes de Instagram */
+.ig-feed img {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ig-feed img:hover {
+  transform: translateY(-3px) scale(1.05); /* se levanta y hace zoom */
+  box-shadow: 0 6px 16px rgba(0, 122, 51, 0.25); /* sombra verde como el botón */
+  position: relative;
+  z-index: 2;
+}
+
+/* Forzar imágenes del feed de Instagram a proporción cuadrada */
+.ig-feed img {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* cuadradas */
+  object-fit: cover;     /* recorta sin deformar */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 0.75rem;
+}
+
+.ig-feed img:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 122, 51, 0.25);
+  position: relative;
+  z-index: 2;
+}
+
+
+
+
