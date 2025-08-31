@@ -35,5 +35,18 @@
 - El límite de 5 imágenes se valida al agregar/editar.
 - Las imágenes se guardan en `assets/img/properties/p<ID>/` y se registran en la tabla `imagenes_propiedades`.
 
+
+## 🌐 Demo en vivo
+- Producción: [ganamaxii.pe](https://ganamaxii.pe)
+- Pruebas: [g.ecla.pe](https://g.ecla.pe)
+
+
+## ⚙️ Instalación local
+1. Clona el repo: git clone https://github.com/tuusuario/ganamaxii.git
+2. Copia includes/config.sample.php → config.php y pon tus credenciales locales.
+3. Crea la BD `ganamaxii` en phpMyAdmin.
+4. Importa sql/ganamaxii.example.sql.
+5. Abre http://localhost/ganamaxii en tu navegador.
+
 Autor: Luis A. Julca O. 
 LinkIn: https://www.linkedin.com/in/l-alonso-julca-o/
